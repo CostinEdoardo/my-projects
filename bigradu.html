@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generare Nume Proiect BIG Radu</title>
+    <style>
+        /* Stiluri comune */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f7fc;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .container label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+        }
+
+        .container select, .container input {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .container select:focus, .container input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            word-wrap: break-word;
+        }
+
+        .toggle-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .dark-theme {
+            background-color: #333;
+            color: white;
+        }
+
+        .dark-theme .container {
+            background-color: #444;
+        }
+
+        .dark-theme button {
+            background-color: #333;
+        }
+
+        .dark-theme button:hover {
+            background-color: #555;
+        }
+
+        .dark-theme select, .dark-theme input {
+            background-color: #555;
+            color: white;
+            border: 1px solid #777;
+        }
+
+        .dark-theme .toggle-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        .dark-theme .toggle-btn:hover {
+            background-color: #555;
+        }
+
+        .copy-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="toggle-btn" onclick="toggleTheme()">Schimbă Tema</button>
+
+        <h1>Generare Nume Proiect BIG Radu</h1>
+        <form id="form">
+            <label for="clasa_numar">Alege clasa (0-13):</label>
+            <select id="clasa_numar" required>
+                <option value="">--Selectează--</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+            </select>
+
+            <label for="clasa_litera">Alege litera clasei (A-Z):</label>
+            <select id="clasa_litera" required>
+                <option value="">--Selectează--</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J</option>
+                <option value="K">K</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="N">N</option>
+                <option value="O">O</option>
+                <option value="P">P</option>
+                <option value="Q">Q</option>
+                <option value="R">R</option>
+                <option value="S">S</option>
+                <option value="T">T</option>
+                <option value="U">U</option>
+                <option value="V">V</option>
+                <option value="W">W</option>
+                <option value="X">X</option>
+                <option value="Y">Y</option>
+                <option value="Z">Z</option>
+            </select>
+
+            <label for="al_catelea">Alege numărul (1-25):</label>
+            <select id="al_catelea" required>
+                <option value="">--Selectează--</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+            </select>
+
+            <label for="numele_meu">Care este numele tău?</label>
+            <input type="text" id="numele_meu" required>
+
+            <label for="tema_proiectului">Care este tema proiectului?</label>
+            <input type="text" id="tema_proiectului" required>
+
+            <label for="extensia_fisierului">Care este extensia fișierului?</label>
+            <input type="text" id="extensia_fisierului" required>
+
+            <button type="button" onclick="generareNume()">Generare Nume</button>
+        </form>
+
+        <div class="result" id="result"></div>
+        <button class="copy-btn" id="copy-btn" style="display:none;" onclick="copyToClipboard()">Copiază Numele</button>
+    </div>
+
+    <script>
+        // Detectăm tema sistemului
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+        // Funcția care activează tema întunecată
+        function setDarkTheme() {
+            document.body.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+        }
+
+        // Funcția care activează tema luminoasă
+        function setLightTheme() {
+            document.body.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+        }
+
+        // Funcția care comută tema între întunecată și luminoasă
+        function toggleTheme() {
+            if (document.body.classList.contains('dark-theme')) {
+                setLightTheme();
+            } else {
+                setDarkTheme();
+            }
+        }
+
+        // Setăm tema în funcție de preferințele utilizatorului sau de setările din localStorage
+        function applyTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                setDarkTheme();
+            } else if (savedTheme === 'light') {
+                setLightTheme();
+            } else {
+                if (prefersDarkScheme.matches) {
+                    setDarkTheme();
+                } else {
+                    setLightTheme();
+                }
+            }
+        }
+
+        // Aplica tema la încărcarea paginii
+        window.onload = applyTheme;
+
+        function generareNume() {
+            let clasaNumar = document.getElementById('clasa_numar').value;
+            let clasaLitera = document.getElementById('clasa_litera').value;
+            let alCatelea = document.getElementById('al_catelea').value;
+            let numeleMeu = document.getElementById('numele_meu').value;
+            let temaProiectului = document.getElementById('tema_proiectului').value;
+            let extensiaFisierului = document.getElementById('extensia_fisierului').value;
+
+            if (!clasaNumar || !clasaLitera || !alCatelea || !numeleMeu || !temaProiectului || !extensiaFisierului) {
+                alert("Te rog completează toate câmpurile.");
+                return;
+            }
+
+            let clasaCombinata = clasaNumar + clasaLitera;
+            let dataAzi = new Date().toLocaleDateString('ro-RO');
+            let extensieMare = extensiaFisierului.toUpperCase();
+            let extensieMica = extensiaFisierului.toLowerCase();
+
+            numeleMeu = numeleMeu.toUpperCase().replace(/\s+/g, '.');
+            temaProiectului = temaProiectului.toUpperCase().replace(/\s+/g, '.');
+
+            let numeGenerat = `${clasaCombinata}-${alCatelea}-${numeleMeu}-${temaProiectului}-${dataAzi}-${extensieMare}.${extensieMica}`;
+
+            document.getElementById('result').textContent = `Numele generat este: ${numeGenerat}`;
+            document.getElementById('copy-btn').style.display = 'block';
+        }
+
+        function copyToClipboard() {
+            const resultText = document.getElementById('result').textContent.replace("Numele generat este: ", "");
+            navigator.clipboard.writeText(resultText).then(() => {
+                alert("Numele a fost copiat în clipboard!");
+            });
+        }
+    </script>
+
+</body>
+</html>
