@@ -1,107 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Storage Page</title>
-    <style>
-        :root {
-            --bg-color: #f4f4f4;
-            --text-color: #333;
-            --button-bg: #333;
-            --button-text: #fff;
-            --card-bg: #fff;
-            --card-shadow: rgba(0, 0, 0, 0.1);
-        }
-        .dark-mode {
-            --bg-color: #181818;
-            --text-color: #e0e0e0;
-            --button-bg: #e0e0e0;
-            --button-text: #181818;
-            --card-bg: #242424;
-            --card-shadow: rgba(255, 255, 255, 0.1);
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: "Arial", sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
-        .theme-switcher {
-            margin-bottom: 20px;
-            padding: 12px 20px;
-            cursor: pointer;
-            border: none;
-            background-color: var(--button-bg);
-            color: var(--button-text);
-            font-size: 16px;
-            border-radius: 8px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .theme-switcher:hover {
-            opacity: 0.8;
-        }
-        .card {
-            background-color: var(--card-bg);
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px var(--card-shadow);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-        .links {
-            list-style: none;
-            padding: 0;
-        }
-        .links li {
-            margin: 10px 0;
-        }
-        a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>My Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:800&display=swap');
+body, * {
+  font-family: 'Poppins', Arial, sans-serif !important;
+  font-weight: bold !important;
+  margin: 0;
+  color: #f5f5f5;
+}
+body {
+  background: #191919;
+  min-height: 100vh;
+}
+#points-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+.point-dot {
+  position: absolute;
+  width: 5px; height: 5px;
+  background: #fff7;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1.5px #fff3;
+}
+.main-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 32px 0 60px 0;
+}
+.page-title-edit h2 {
+  font-size: 34px;
+  font-weight: 800;
+  color: #ececec;
+  text-align: center;
+  margin: 0 0 24px 0;
+}
+.export-area {
+  position: relative;
+  width: 1766px;
+  min-height: 734px;
+  margin: 0 auto 36px auto;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 2;
+}
+.export-area .export-grid {
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background-image:
+    repeating-linear-gradient(to right, #fff 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(to bottom, #fff 0 1px, transparent 1px 64px);
+}
+.draggable-div {
+  position: absolute;
+  background: rgba(50,50,50,0.84);
+  border: 2px solid #686868;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,0.08);
+  color: #fff;
+  padding: 16px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  min-height: 80px;
+  user-select: text;
+  overflow: visible;
+  font-family: inherit;
+  font-weight: bold;
+  z-index: 2;
+  transition: 
+    background 0.18s, 
+    box-shadow 0.18s, 
+    transform 0.18s, 
+    border-color 0.18s;
+}
+.draggable-div:hover, .draggable-div:focus-visible {
+  background: rgba(70,70,70,0.92);
+  box-shadow: 0 8px 36px 0 #000a;
+  border-color: #aaa;
+  transform: scale(1.034);
+  z-index: 99;
+}
+.div-content {
+  flex: 1;
+  min-height: 36px;
+  background: transparent;
+  color: #fff;
+  padding: 0;
+  margin-bottom: 8px;
+  word-break: break-word;
+  outline: none;
+  font-family: inherit;
+  font-weight: bold;
+}
+.div-buttons-area { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.div-link-btn {
+  background: #333c;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s;
+  margin-right: 5px;
+  font-family: inherit;
+}
+.div-link-btn:hover, .div-link-btn:focus {
+  background: #555d;
+  color: #fff;
+  text-decoration: underline;
+}
+footer {
+  width: 100%;
+  background: #1a1a1a;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  border-top: 1px solid #222;
+  min-height: 36px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-family: inherit;
+  font-weight: bold;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <button class="theme-switcher" onclick="toggleTheme()">Switch Theme</button>
-        <h1>Favorite Links</h1>
-        <div class="card">
-            <ul class="links">
-                <li><a href="https://costinedoardo.github.io/Generare-Nume-Fisier-BIG-Radu/" target="_blank">Generare Nume Proiect BIG Radu</a></li>
-                <li><a href="https://costinedoardo.github.io/zombies/" target="_blank">Zombies</a></li>
-                <li><a href="https://costinedoardo.github.io/Repo-Catalog/" target="_blank">R.E.P.O.</a></li>
-            </ul>
-        </div>
+  <div id="points-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;"><div class="point-dot" style="left: 319.541px; top: 748.143px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1709.42px; top: 566.698px;width:5px;height:5px;"></div><div class="point-dot" style="left: 691.952px; top: 856.15px;width:5px;height:5px;"></div><div class="point-dot" style="left: 88.5068px; top: 753.633px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1517.03px; top: 550.884px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1037.83px; top: 584.432px;width:5px;height:5px;"></div><div class="point-dot" style="left: 208.654px; top: 421.992px;width:5px;height:5px;"></div><div class="point-dot" style="left: 679.347px; top: 39.4321px;width:5px;height:5px;"></div><div class="point-dot" style="left: 179.94px; top: 859.867px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1603.25px; top: 766.292px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1248.05px; top: 821.365px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1367.04px; top: 895.031px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1375.1px; top: 698.682px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1549.24px; top: 775.479px;width:5px;height:5px;"></div><div class="point-dot" style="left: 46.8422px; top: 665.723px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1228.27px; top: 849.566px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1408.06px; top: 439.061px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1191.77px; top: 677.999px;width:5px;height:5px;"></div><div class="point-dot" style="left: 1398.56px; top: 205.928px;width:5px;height:5px;"></div><div class="point-dot" style="left: 296.147px; top: 301.245px;width:5px;height:5px;"></div></div>
+  <div class="main-content" style="position:relative;z-index:1;">
+    <div class="page-title-edit">
+      <h2><u>My Projects</u></h2>
     </div>
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-        }
+    <div class="export-area">
+      <div class="export-grid"></div>
+      
+      <div class="draggable-div" style="left:0px;top:64px;width:640px;height:192px;z-index:193;">
+        <div class="div-content"><p><u>Generare nume proiect BIG Radu</u></p><p><br></p><p><span style="font-weight: normal;">O aplicație web care creează automat nume standardizate de fișiere pentru proiecte școlare, pe baza clasei, numărului, numelui elevului, titlului temei și datei curente. Ideală pentru organizare și evitare de erori.</span></p></div>
+        <div class="div-buttons-area"><a class="div-link-btn" href="https://costinedoardo.github.io/Generare-Nume-Fisier-BIG-Radu/" target="_blank" rel="noopener noreferrer">Try Now</a></div>
+      </div>
+    
 
-        function loadTheme() {
-            if (localStorage.getItem('theme') === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-        }
+      <div class="draggable-div" style="left:704px;top:64px;width:384px;height:192px;z-index:194;">
+        <div class="div-content"><u>R.E.P.O. Catalog</u><div><br></div><div><span style="font-weight: 400;">Catalog cu poreclele monstrilor din jocul R.E.P.O.</span></div></div>
+        <div class="div-buttons-area"><a class="div-link-btn" href="https://costinedoardo.github.io/Repo-Catalog/" target="_blank" rel="noopener noreferrer">Explore Now</a></div>
+      </div>
+    
 
-        window.onload = loadTheme;
-    </script>
+      <div class="draggable-div" style="left:1152px;top:64px;width:512px;height:192px;z-index:195;">
+        <div class="div-content"><u>Zombies</u><div><span style="font-weight: normal;">Joc de evitarea zombilor cu arma, gloante reincarcabile, sistem de viata, bandaje si cresterea difculatii pe parcusrsul jocului.</span></div></div>
+        <div class="div-buttons-area"><a class="div-link-btn" href="https://costinedoardo.github.io/zombies/" target="_blank" rel="noopener noreferrer">Play Now</a></div>
+      </div>
+    
+    </div>
+  </div>
+  <footer>
+    Copyright © 2025 - Costin Edoardo
+  </footer>
+  <script>
+(function(){
+var POINTS_COUNT = 48;
+var points = [];
+function randomBetween(a, b) {return Math.random() * (b - a) + a;}
+function animatePoints() {
+  var w = window.innerWidth, h = window.innerHeight;
+  for (var i = 0; i < points.length; i++) {
+    var p = points[i];
+    p.vx += randomBetween(-0.012, 0.012);
+    p.vy += randomBetween(-0.012, 0.012);
+    p.vx = Math.max(-0.13, Math.min(0.13, p.vx));
+    p.vy = Math.max(-0.13, Math.min(0.13, p.vy));
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x <= 0 || p.x >= w - 5) p.vx = -p.vx;
+    if (p.y <= 0 || p.y >= h - 5) p.vy = -p.vy;
+    p.x = Math.max(0, Math.min(p.x, w - 5));
+    p.y = Math.max(0, Math.min(p.y, h - 5));
+    p.dot.style.left = p.x + 'px';
+    p.dot.style.top = p.y + 'px';
+  }
+  requestAnimationFrame(animatePoints);
+}
+function initPoints() {
+  var container = document.getElementById('points-bg');
+  if (!container) return;
+  var w = window.innerWidth, h = window.innerHeight;
+  var dots = container.querySelectorAll('.point-dot');
+  points = [];
+  for (var i = 0; i < dots.length; i++) {
+    var dot = dots[i];
+    var px = parseFloat(dot.style.left) || randomBetween(0, w - 5);
+    var py = parseFloat(dot.style.top) || randomBetween(0, h - 5);
+    points.push({
+      x: px,
+      y: py,
+      vx: randomBetween(-0.08, 0.08),
+      vy: randomBetween(-0.08, 0.08),
+      dot: dot
+    });
+  }
+}
+window.addEventListener('resize', initPoints);
+initPoints();
+animatePoints();
+})();
+</script>
 </body>
 </html>
